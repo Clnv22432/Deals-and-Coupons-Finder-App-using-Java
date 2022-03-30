@@ -1,0 +1,34 @@
+server:
+  port: 8084
+ 
+spring:
+   cloud:
+    gateway:
+     routes:
+       
+      #Route Mapping 
+       - id: ProfileManagement                    #Route Identifier
+         uri: http://localhost:8080/              #Respective microservice URL which needs to be mapped
+         predicates:                              #Request Context Path Mapping 
+         - Path=/profile/**
+         
+      #Route Mapping 
+       - id: Coupons                       
+         uri: http://localhost:8081/               
+         predicates: 
+         - Path=/coupon/**                         
+         
+      #Route Mapping 
+       - id: ProductsService 
+         uri: http://localhost:8092/
+         predicates: 
+         - Path=/products/**
+         
+         #Route Mapping 
+       - id: Payment
+         uri: http://localhost:8091/
+         predicates: 
+         - Path=/payments/**
+        
+        
+        
